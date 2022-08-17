@@ -2,6 +2,7 @@ package com.bridgelabz.addressbookapp.service;
 
 import com.bridgelabz.addressbookapp.dto.AddressDTO;
 import com.bridgelabz.addressbookapp.model.AddressModel;
+import com.bridgelabz.addressbookapp.util.Response;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,13 +10,15 @@ import java.util.List;
 public interface IAddressService {
     String getMessage();
 
-    List<AddressModel> getListContacts();
+    AddressModel addContact(AddressDTO addressDTO);
 
-    AddressModel getContactById(long getId);
+    AddressModel getContactById(Long id, AddressDTO addressDTO, String token);
 
-    void deleteContact(long id);
+    List<AddressModel> getAllContacts(String token);
 
-    String AddAddressBook(AddressDTO addressDTO);
+    AddressModel deleteContact(Long id, String token);
 
-    AddressModel updateAddressContact(long getId, AddressDTO addressDTO);
+    AddressModel updateContacts(long id, AddressDTO addressDTO);
+
+    Response login(String emailId, String password);
 }
