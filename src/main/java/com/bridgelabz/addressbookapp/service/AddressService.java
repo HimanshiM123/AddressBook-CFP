@@ -119,7 +119,7 @@ public class AddressService implements IAddressService{
         if (isEmailPresent.isPresent()) {
             if (isEmailPresent.get().getPassword().equals(password)) {
                 String token = tokenUtil.createToken(isEmailPresent.get().getId());
-                return new Response("Login successful", 200, token);
+                return new Response("Login successful", token);
             } else {
                 throw new AddressBookNotFoundException(400, "Password is wrong");
             }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 @RestController
 @RequestMapping("/addressbook")
@@ -22,16 +23,18 @@ public class AddressController {
         return message;
     }
     @PostMapping("/addcontact")
-    public AddressModel addContact(@RequestBody AddressDTO addressDTO){
+    public AddressModel addContact(@Valid @RequestBody AddressDTO addressDTO){
+
         return addressService.addContact(addressDTO);
     }
     @GetMapping("/getcontact/{getId}")
-    public AddressModel getContactById( @PathVariable long id, @RequestBody AddressDTO addressDTO, @RequestHeader String token) {
+    public AddressModel getContactById( @PathVariable long id, @Valid @RequestBody AddressDTO addressDTO, @RequestHeader String token) {
         return addressService.getContactById(id, addressDTO, token);
     }
 
     @GetMapping("/getcontacts")
     public List<AddressModel> getContacts(@RequestHeader String token) {
+
         return addressService.getAllContacts(token);
     }
 
@@ -40,7 +43,7 @@ public class AddressController {
         return addressService.deleteContact(id, token);
     }
     @PutMapping("/updatecontact/{getId}")
-    public AddressModel updateContact(@PathVariable long id, @RequestBody AddressDTO addressDTO){
+    public AddressModel updateContact(@PathVariable long id, @Valid @RequestBody AddressDTO addressDTO){
        return addressService.updateContacts(id, addressDTO);
     }
     @PostMapping("/login")

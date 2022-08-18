@@ -15,23 +15,22 @@ import java.time.LocalDateTime;
 public class AddressModel {
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
     private String firstName;
     private String lastName;
-    private String fullName;
     private String address;
     private String state;
     private String city;
-    private int zip;
-    private long phone;
+    private String zip;
+    private String phone;
     private String emailId;
     private String password;
     private LocalDateTime registerDate;
     private LocalDateTime updatedDate;
 
     public AddressModel(AddressDTO addressDTO) {
-        this.fullName=addressDTO.getFirstName();
-        this.fullName=addressDTO.getLastName();
+        this.firstName=addressDTO.getFirstName();
+        this.lastName=addressDTO.getLastName();
         this.address=addressDTO.getAddress();
         this.state=addressDTO.getState();
         this.city=addressDTO.getCity();
